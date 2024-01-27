@@ -189,6 +189,7 @@ export default function HomePage() {
             : ''
         }}
       />
+      <Space direction="vertical"></Space>
       <AutoCenter>滑动滑块，选取需要倒退的T日</AutoCenter>
       <Space direction="vertical"></Space>
       <Slider
