@@ -1,8 +1,13 @@
-import { Link, Outlet } from "umi";
-import styles from "./index.less";
+import { Link, Outlet } from 'umi'
+import styles from './index.less'
+import DisableDevtool from 'disable-devtool'
 
 export default function Layout() {
-  return <Outlet />;
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+  if ('development' !== process.env.NODE_ENV) {
+    DisableDevtool()
+  }
+  return <Outlet />
   // return (
   //   <div className={styles.navs}>
   //     <ul>

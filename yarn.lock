@@ -2583,6 +2583,11 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
+disable-devtool@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.npmmirror.com/disable-devtool/-/disable-devtool-0.3.7.tgz#054c34f68806538ea0b99a7ef512d32a4e6f73b4"
+  integrity sha512-xF5uyEpBhDuy7b4Bb88GQG4IB+2CwuQfkJK9vB/ym+85NQp/f7Wc6hnT40Jy2SkKvEf1xAKpvJUJU3LykTXxKg==
+
 doctrine@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/doctrine/-/doctrine-2.1.0.tgz#5cd01fc101621b42c4cd7f5d1a66243716d3f39d"
