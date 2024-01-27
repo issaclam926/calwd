@@ -166,8 +166,8 @@ export default function HomePage() {
       <AutoCenter>
         <h2>封板日计算小工具</h2>
       </AutoCenter>
-      <p>快速型紧急类投产交付时间为T-4；T为自然日;</p>
-      <p>从0322开始，版本日型投产交付时间为T-7，T为工作日</p>
+      <p>快速型紧急类投产交付时间为T-4；T为自然日；</p>
+      <p>从0322开始，版本日型投产交付时间为T-7，T为工作日；</p>
       <AutoCenter>
         <Image src={yayJpg} width="100%" height="auto" lazy />
         {/* <img src={yayJpg}  /> */}
@@ -190,7 +190,7 @@ export default function HomePage() {
         }}
       />
       <Space direction="vertical"></Space>
-      <AutoCenter>滑动滑块，选取需要倒退的T日</AutoCenter>
+      <AutoCenter>滑动滑块，选取需要倒退的T日（工作日）</AutoCenter>
       <Space direction="vertical"></Space>
       <Slider
         max={Number(getLastObjValue(marks))}
