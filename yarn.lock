@@ -1481,6 +1481,11 @@
     enhanced-resolve "5.9.3"
     is-equal "^1.6.4"
 
+"@umijs/plugin-analytics@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.npmmirror.com/@umijs/plugin-analytics/-/plugin-analytics-0.2.4.tgz#eeb3f47811ce45fd778f50510711f92c5140846c"
+  integrity sha512-aIHc/okDmCae/6iJS3lRV2b9/cuFUoGQhioeoZzC2mBYy43o0Z6KWSY5TlzraY4bDdGurWsFQC6dB1TVUCMGbg==
+
 "@umijs/plugin-run@4.1.1":
   version "4.1.1"
   resolved "https://registry.npmmirror.com/@umijs/plugin-run/-/plugin-run-4.1.1.tgz#25ffc559e02aaf441eb339820ccfabd56ebab20b"

@@ -60,7 +60,26 @@ export default function HomePage() {
 
   const weekday = ['', '一', '二', '三', '四', '五', '六', '日']
 
-  const OnlineDay = ['2024-02-23', '2024-03-22']
+  const OnlineDay = [
+    '2024-01-19',
+    '2024-02-23',
+    '2024-03-22',
+    '2024-04-12',
+    '2024-04-26',
+    '2024-05-17',
+    '2024-06-01',
+    '2024-06-21',
+    '2024-07-05',
+    '2024-08-02',
+    '2024-08-16',
+    '2024-09-06',
+    '2024-09-27',
+    '2024-10-18',
+    '2024-11-02',
+    '2024-11-22',
+    '2024-12-06',
+    '2024-12-20'
+  ]
 
   function isWorkday(date: any) {
     const day = date.getDay()
@@ -83,6 +102,7 @@ export default function HomePage() {
       .toISOString()
       .slice(0, 10)
     console.log(selectDate.toISOString().slice(0, 10), '要减去', mark, r)
+    window._hmt.push(['_trackEvent', '计算', '计算1', '-', r])
     setResult(r)
   }, [selectDate, mark])
 
@@ -106,6 +126,7 @@ export default function HomePage() {
         visible={visible1}
         selectionMode="single"
         defaultValue={selectDate}
+        max={dayjs('2024-12-31')}
         onClose={() => setVisible1(false)}
         onMaskClick={() => setVisible1(false)}
         onConfirm={date =>
@@ -128,29 +149,26 @@ export default function HomePage() {
         }}
       />
 
-      <Space direction="vertical">
-      </Space>
-        <Button
-          color="primary"
-          fill="solid"
-          block 
-          size='large'
-          onClick={() => {
-            setVisible1(true)
-          }}
-        >
-          点击更改，投产日：{selectDate.toISOString().slice(0, 10)}
-        </Button>
-       
+      <Space direction="vertical"></Space>
+      <Button
+        color="primary"
+        fill="solid"
+        block
+        size="large"
+        onClick={() => {
+          setVisible1(true)
+        }}
+      >
+        点击更改，投产日：{selectDate.toISOString().slice(0, 10)}
+      </Button>
 
-      <div style={{ padding: 16}}>
+      <div style={{ padding: 16 }}>
         <h3>
-        <AutoCenter>
+          <AutoCenter>
             封板时间为：{result} ，星期{weekday[dayjs(result).isoWeekday()]}
           </AutoCenter>
         </h3>
-       
-        </div>
+      </div>
       <p></p>
     </div>
   )
