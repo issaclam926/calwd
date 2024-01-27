@@ -7,7 +7,7 @@ import {
   CalendarPicker,
   Slider,
   Toast,
-  List,
+  Image,
   AutoCenter,
   Dialog,
   TextArea
@@ -168,9 +168,10 @@ export default function HomePage() {
       </AutoCenter>
       <p>快速型紧急类投产交付时间为T-4；T为自然日;</p>
       <p>从0322开始，版本日型投产交付时间为T-7，T为工作日</p>
-      <p>
-        <img src={yayJpg} width="100%" height="auto" />
-      </p>
+      <AutoCenter>
+        <Image src={yayJpg} width="100%" height="auto" lazy />
+        {/* <img src={yayJpg}  /> */}
+      </AutoCenter>
 
       <CalendarPicker
         visible={visible1}
