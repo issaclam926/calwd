@@ -8,6 +8,6 @@ export default defineConfig({
   analytics: {
     baidu: 'f40884d61d728d7ff44af3e8121a32fc'
   },
-  plugins: ['@umijs/plugin-analytics'],
+  plugins: ['anlytics-nolog'],
   npmClient: 'yarn'
 })

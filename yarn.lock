@@ -1481,11 +1481,6 @@
     enhanced-resolve "5.9.3"
     is-equal "^1.6.4"
 
-"@umijs/plugin-analytics@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.npmmirror.com/@umijs/plugin-analytics/-/plugin-analytics-0.2.4.tgz#eeb3f47811ce45fd778f50510711f92c5140846c"
-  integrity sha512-aIHc/okDmCae/6iJS3lRV2b9/cuFUoGQhioeoZzC2mBYy43o0Z6KWSY5TlzraY4bDdGurWsFQC6dB1TVUCMGbg==
-
 "@umijs/plugin-run@4.1.1":
   version "4.1.1"
   resolved "https://registry.npmmirror.com/@umijs/plugin-run/-/plugin-run-4.1.1.tgz#25ffc559e02aaf441eb339820ccfabd56ebab20b"
@@ -1665,6 +1660,11 @@ ajv@^6.12.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+anlytics-nolog@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.npmmirror.com/anlytics-nolog/-/anlytics-nolog-0.3.1.tgz#3aa8d18d80355d5db0a89393ba04b90ec7aaaf06"
+  integrity sha512-6LYrmVCYqTnRdSRd6xDMenvlzOeuvglOGhlyRxqLAcBq+xF1YOVfo6aiS3LiLTBt5UQb3K9jChc4umMJYdkcHA==
 
 ansi-html-community@^0.0.8:
   version "0.0.8"
