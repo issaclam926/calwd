@@ -1,4 +1,4 @@
-import yayJpg from '../assets/yay.jpg'
+import yayJpg from '../assets/yay.gif'
 import React, { useState, useEffect, useRef } from 'react'
 import styles from './index.less'
 import {
@@ -14,6 +14,12 @@ import {
 } from 'antd-mobile'
 import dayjs from 'dayjs'
 import { useRequest } from 'ahooks'
+// import styled from 'styled-components'
+
+// const Odiv = styled.span`
+//   color: yellowgreen;
+//   font-family: 'ali';
+// `
 
 export default function HomePage() {
   var isoWeek = require('dayjs/plugin/isoWeek')
@@ -156,14 +162,14 @@ export default function HomePage() {
   }
 
   return (
-    <div className={styles.bg}>
+    <div className={[`${styles.bg}`, `${styles.aliSpan}`].join(' ')}>
       <AutoCenter>
         <h2>封板日计算小工具</h2>
       </AutoCenter>
       <p>快速型紧急类投产交付时间为T-4；T为自然日;</p>
       <p>从0322开始，版本日型投产交付时间为T-7，T为工作日</p>
       <p>
-        <img src={yayJpg} width="388" />
+        <img src={yayJpg} width="100%" height="auto" />
       </p>
 
       <CalendarPicker
@@ -195,7 +201,9 @@ export default function HomePage() {
         }}
       />
 
-      <Space direction="vertical"></Space>
+      <Space direction="vertical">
+        <div className={styles.h}></div>
+      </Space>
       <Button
         color="primary"
         fill="solid"
