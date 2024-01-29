@@ -184,9 +184,15 @@ export default function HomePage() {
           date ? setSelectDate(date) : Toast.show('日期不合法')
         }
         renderTop={date => {
-          return OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))
-            ? '投产点'
-            : ''
+          let str = ''
+          if (OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            str = '投产点'
+          } else if (holidays.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            str = '法定假'
+          } else {
+            str = ''
+          }
+          return str
         }}
       />
       <Space direction="vertical"></Space>
