@@ -13,6 +13,7 @@ export default defineConfig({
   define: {
     'process.env.NODE_ENV': process.env.NODE_ENV,
     'process.env.HMR': process.env.HMR,
-    'process.env.SOCKET_SERVER': process.env.ERROR_OVERLAY
+    'process.env.SOCKET_SERVER': process.env.ERROR_OVERLAY,
+    PUSH_URL: 'https://nas6.issaclam.top:2087/RNdCNJV6TRExkKUEFE4ZvN/'
   }
 })

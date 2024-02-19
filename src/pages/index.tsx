@@ -139,9 +139,7 @@ export default function HomePage() {
   }
 
   function goFeedback(fd: string): Promise<{ success: boolean }> {
-    return fetch(
-      'https://nas6.issaclam.top:2087/RNdCNJV6TRExkKUEFE4ZvN/' + fd
-    ).then(response => response.json())
+    return fetch(PUSH_URL + fd).then(response => response.json())
   }
 
   const { loading, run } = useRequest(goFeedback, {
