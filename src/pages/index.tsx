@@ -101,10 +101,31 @@ export default function HomePage() {
     '2024-12-20'
   ]
 
+  // 需要补班的周六日
+  const expDay = [
+    '2024-02-04',
+    '2024-02-18',
+    '2024-04-07',
+    '2024-04-28',
+    '2024-05-11',
+    '2024-09-14',
+    '2024-09-29',
+    '2024-10-12'
+  ]
+
+  /**
+   *
+   * @param date 当前日期
+   * @returns 是否是工作日
+   */
   function isWorkday(date: any) {
     const day = date.getDay()
     const dateString = date.toISOString().slice(0, 10)
-    return day !== 0 && day !== 6 && !holidays.includes(dateString)
+    if (expDay.includes(dateString)) {
+      return true
+    } else {
+      return day !== 0 && day !== 6 && !holidays.includes(dateString)
+    }
   }
 
   function getPreviousWorkday(date: any, days: any) {
@@ -189,6 +210,8 @@ export default function HomePage() {
             str = '投产点'
           } else if (holidays.includes(dayjs(date).format('YYYY-MM-DD'))) {
             str = '法定假'
+          } else if (expDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            str = '调休上班'
           } else {
             str = ''
           }
