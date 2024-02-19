@@ -203,13 +203,16 @@ export default function HomePage() {
           date ? setSelectDate(date) : Toast.show('日期不合法')
         }
         renderTop={date => {
-          let str = ''
+          let str: React.ReactNode | string = ''
           if (OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
-            str = '投产点'
+            // str = '投产点'
+            str = <div className={styles.onlineDayColor}>投产点</div>
           } else if (holidays.includes(dayjs(date).format('YYYY-MM-DD'))) {
-            str = '法定假'
+            // str = '法定假'
+            str = <div className={styles.holidayColor}>法定假</div>
           } else if (expDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
-            str = '调休上班'
+            // str = '调休上班'
+            str = <div className={styles.expdayColor}>调休上班</div>
           } else {
             str = ''
           }
