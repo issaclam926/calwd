@@ -108,7 +108,7 @@ export default function HomePage() {
     {
       key: '13',
       name: '应用组装测试报告生成（SIT）',
-      cal: 11
+      cal: 9
     },
     {
       key: '14',
