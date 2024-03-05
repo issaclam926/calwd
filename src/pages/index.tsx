@@ -10,10 +10,22 @@ import {
   Image,
   AutoCenter,
   Dialog,
-  TextArea
+  TextArea,
+  Tabs
 } from 'antd-mobile'
+import { Table } from 'antd'
 import dayjs from 'dayjs'
 import { useRequest } from 'ahooks'
+import {
+  marks,
+  holidays,
+  weekday,
+  OnlineDay,
+  expDay,
+  columnsTable1,
+  columnsTable2,
+  columnsTable3
+} from './constant'
 // import styled from 'styled-components'
 
 // const Odiv = styled.span`
@@ -30,88 +42,155 @@ export default function HomePage() {
   const [mark, setMark] = useState(0)
   const [result, setResult] = useState('等待选择后计算')
   const [selectDate, setSelectDate] = useState(new Date())
+  const [dataSourceTable1, setDataSourceTable1] = useState([
+    {
+      key: '1',
+      name: '需求项下达截止时间',
+      day: '',
+      milestone: '',
+      cal: 25
+    },
+    {
+      key: '2',
+      name: '非功能测试需求提出截止时间',
+      cal: 24
+    },
+    {
+      key: '3',
+      name: '非功能测试准入（环境绿灯）',
+      cal: 21
+    },
+    {
+      key: '4',
+      name: '更新基线表',
+      cal: 18
+    },
+    {
+      key: ' 5',
+      name: '非功能评估：第一批',
+      cal: 18
+    },
+    {
+      key: ' 6',
+      name: '非功能测试方案、案例提交截止时间',
+      cal: 16
+    },
+    {
+      key: '7',
+      name: '业务功能审核',
+      cal: 17
+    },
+    {
+      key: '8',
+      name: '测试案例评审',
+      cal: 15
+    },
+    {
+      key: '9',
+      name: '单元测试评估',
+      cal: 14
+    },
+    {
+      key: '10',
+      name: '非功能评估：第二批',
+      cal: 13
+    },
+    {
+      key: '11',
+      name: '测试案例导入ctcm',
+      cal: 12
+    },
+    {
+      key: '12',
+      name: '单元测试完成',
+      cal: 12
+    },
+    {
+      key: '13',
+      name: '应用组装测试报告生成（SIT）',
+      cal: 11
+    },
+    {
+      key: '14',
+      name: '非功能评估：第三批',
+      cal: 10
+    },
+    {
+      key: '15',
+      name: '初版非功能测试报告提交截止时间',
+      cal: 10
+    },
+    {
+      key: '16',
+      name: '用户测试案例执行完成（UAT）',
+      cal: 9
+    },
+    {
+      key: '17',
+      name: '用户测试报告提交',
+      cal: 8
+    },
+    {
+      key: '18',
+      name: '非功能评估：第四批',
+      cal: 7
+    },
+    {
+      key: '19',
+      name: '终版非功能测试报告通过',
+      cal: 7
+    },
+    {
+      key: '20',
+      name: '基线审核+安装测试审核通过',
+      cal: 7
+    },
+    {
+      key: '21',
+      name: '版本检验完成',
+      cal: 3
+    }
+  ])
+
+  const [dataSourceTable2, setDataSourceTable2] = useState([
+    {
+      key: '1',
+      name: '业务功能关联',
+      day: '',
+      milestone: '',
+      cal: 8
+    },
+    {
+      key: '2',
+      name: '应用组装测试完成',
+      cal: 6
+    },
+    {
+      key: '3',
+      name: '用户测试完成（SIT/UAT）',
+      cal: 5
+    },
+    {
+      key: '4',
+      name: '用户测试报告提交（20:00前）',
+      cal: 5
+    },
+    {
+      key: '5',
+      name: '封板',
+      cal: 4
+    },
+    {
+      key: '6',
+      name: '版本检验完成',
+      cal: 2
+    }
+  ])
+
+  const [dataSourceTable3, setDataSourceTable3] = useState([])
+
   const sleep = (time: number) =>
     new Promise(resolve => setTimeout(resolve, time))
-  const marks = {
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5,
-    6: 6,
-    7: 7,
-    8: 8,
-    9: 9,
-    10: 10
-  }
-
-  const holidays = [
-    '2024-01-01', // 元旦
-    '2024-02-10',
-    '2024-02-11',
-    '2024-02-12',
-    '2024-02-13',
-    '2024-02-14',
-    '2024-02-15',
-    '2024-02-16',
-    '2024-02-17', //春节节
-    '2024-04-04',
-    '2024-04-05',
-    '2024-04-06', //清明节
-    '2024-05-01',
-    '2024-05-02',
-    '2024-05-03',
-    '2024-05-04',
-    '2024-05-05', //劳动节
-    '2024-06-08',
-    '2024-06-09',
-    '2024-06-10', //端午节
-    '2024-09-15',
-    '2024-09-16',
-    '2024-09-17', //中秋节
-    '2024-10-01',
-    '2024-10-02',
-    '2024-10-03',
-    '2024-10-04',
-    '2024-10-05',
-    '2024-10-06',
-    '2024-10-07' //国庆节
-  ] // 自定义公众假期
-
-  const weekday = ['', '一', '二', '三', '四', '五', '六', '日']
-
-  const OnlineDay = [
-    '2024-01-19',
-    '2024-02-23',
-    '2024-03-22',
-    '2024-04-12',
-    '2024-04-26',
-    '2024-05-17',
-    '2024-06-01',
-    '2024-06-21',
-    '2024-07-05',
-    '2024-08-02',
-    '2024-08-16',
-    '2024-09-06',
-    '2024-09-27',
-    '2024-10-18',
-    '2024-11-02',
-    '2024-11-22',
-    '2024-12-06',
-    '2024-12-20'
-  ]
-
-  // 需要补班的周六日
-  const expDay = [
-    '2024-02-04',
-    '2024-02-18',
-    '2024-04-07',
-    '2024-04-28',
-    '2024-05-11',
-    '2024-09-14',
-    '2024-09-29',
-    '2024-10-12'
-  ]
 
   /**
    *
@@ -127,13 +206,33 @@ export default function HomePage() {
       return day !== 0 && day !== 6 && !holidays.includes(dateString)
     }
   }
+  // 根据日期，倒算T日
+  function calN(curday: any, index: number) {
+    let i = 0
+    for (let j = 0; j < index; j++) {
+      if (isWorkday(dayjs(curday).subtract(j, 'day').toDate())) {
+        i++
+      }
+    }
+    // console.log(curday.toISOString().slice(0, 10), index, i)
+    return i
+  }
 
+  // 计算工作日
   function getPreviousWorkday(date: any, days: any) {
     while (days > 0) {
       date.setDate(date.getDate() - 1)
       if (isWorkday(date)) {
         days--
       }
+    }
+    return date
+  }
+  // 计算自然日
+  function getPreviouDay(date: any, days: any) {
+    while (days > 0) {
+      date.setDate(date.getDate() - 1)
+      days--
     }
     return date
   }
@@ -158,6 +257,32 @@ export default function HomePage() {
       .slice(0, 10)
     console.log(selectDate.toISOString().slice(0, 10), '要减去', mark, r)
     window._hmt.push(['_trackEvent', '计算', '计算1', '-', r])
+    //更新table
+    dataSourceTable1.forEach(element => {
+      element.milestone = getPreviousWorkday(new Date(selectDate), element.cal)
+        .toISOString()
+        .slice(0, 10)
+      element.day = 'T-' + element.cal
+    })
+    dataSourceTable2.forEach(element => {
+      element.milestone = getPreviouDay(new Date(selectDate), element.cal)
+        .toISOString()
+        .slice(0, 10)
+      element.day = 'T-' + element.cal
+    })
+    let data3 = []
+    for (let i = 0; i <= 50; i++) {
+      let d = getPreviouDay(new Date(selectDate), i)
+      let t = isWorkday(d)
+      data3.push({
+        key: i,
+        day: d.toISOString().slice(0, 10),
+        isWorkDay: t ? '工作日' : '假日',
+        xday: t ? 'T-' + calN(selectDate, i) : '',
+        yday: 'T-' + i
+      })
+      setDataSourceTable3(data3)
+    }
     // run()
     setResult(r)
   }, [selectDate, mark])
@@ -185,8 +310,8 @@ export default function HomePage() {
       <AutoCenter>
         <h2>封板日计算小工具</h2>
       </AutoCenter>
-      <p>快速型紧急类投产交付时间为T-4；T为自然日；</p>
-      <p>从0322开始，版本日型投产交付时间为T-7，T为工作日；</p>
+      <p>快速型紧急类投产交付时间为T-4，T为自然日；</p>
+      <p>版本日型投产交付时间为T-7，T为工作日；</p>
       <AutoCenter>
         <Image src={yayJpg} width="100%" height="auto" lazy />
         {/* <img src={yayJpg}  /> */}
@@ -251,10 +376,35 @@ export default function HomePage() {
       <div style={{ padding: 16 }}>
         <h3>
           <AutoCenter>
-            封板时间为：{result} ，星期{weekday[dayjs(result).isoWeekday()]}
+            您所需倒算的时间为：{result} ，星期
+            {weekday[dayjs(result).isoWeekday()]}
           </AutoCenter>
         </h3>
       </div>
+
+      <Tabs>
+        <Tabs.Tab title="常规版本" key="fruits">
+          <Table
+            dataSource={dataSourceTable1}
+            columns={columnsTable1}
+            pagination={false}
+          />
+        </Tabs.Tab>
+        <Tabs.Tab title="快速紧急" key="vegetables">
+          <Table
+            dataSource={dataSourceTable2}
+            columns={columnsTable2}
+            pagination={false}
+          />
+        </Tabs.Tab>
+        <Tabs.Tab title="其他纵览" key="animals">
+          <Table
+            dataSource={dataSourceTable3}
+            columns={columnsTable3}
+            pagination={false}
+          />
+        </Tabs.Tab>
+      </Tabs>
 
       <div
         className={styles.floatingBtn}

@@ -9,6 +9,7 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "antd": "^5.15.0",
     "antd-mobile": "^5.34.0",
     "dayjs": "^1.11.10",
     "disable-devtool": "^0.3.7",
