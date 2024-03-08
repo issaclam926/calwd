@@ -321,6 +321,7 @@ export default function HomePage() {
         visible={visible1}
         selectionMode="single"
         defaultValue={selectDate}
+        min={dayjs('2024-01-01')}
         max={dayjs('2024-12-31')}
         onClose={() => setVisible1(false)}
         onMaskClick={() => setVisible1(false)}
