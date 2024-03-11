@@ -11,10 +11,12 @@ import {
   AutoCenter,
   Dialog,
   TextArea,
-  Tabs
+  Tabs,
+  CalendarPickerRef
 } from 'antd-mobile'
 import { Table } from 'antd'
 import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
 import { useRequest } from 'ahooks'
 import {
   marks,
@@ -42,6 +44,8 @@ export default function HomePage() {
   const [mark, setMark] = useState(0)
   const [result, setResult] = useState('等待选择后计算')
   const [selectDate, setSelectDate] = useState(new Date())
+  const ref1 = useRef<CalendarPickerRef>(null)
+  dayjs.locale('zh-cn')
   const [dataSourceTable1, setDataSourceTable1] = useState([
     {
       key: '1',
@@ -199,7 +203,7 @@ export default function HomePage() {
    */
   function isWorkday(date: any) {
     const day = date.getDay()
-    const dateString = date.toISOString().slice(0, 10)
+    const dateString = getFormatDate(date)
     if (expDay.includes(dateString)) {
       return true
     } else {
@@ -214,7 +218,6 @@ export default function HomePage() {
         i++
       }
     }
-    // console.log(curday.toISOString().slice(0, 10), index, i)
     return i
   }
 
@@ -252,22 +255,26 @@ export default function HomePage() {
   })
 
   useEffect(() => {
-    var r = getPreviousWorkday(new Date(selectDate), mark)
-      .toISOString()
-      .slice(0, 10)
-    console.log(selectDate.toISOString().slice(0, 10), '要减去', mark, r)
+    console.log('useEffect---', selectDate)
+    // if (selectDate) {
+    //   ref1.current.jumpToToday()
+    // }
+    var r = getFormatDate(getPreviousWorkday(new Date(selectDate), mark))
+    console.log(dayjs(selectDate).format('YYYY-MM-DD'), '要减去', mark, r)
     window._hmt.push(['_trackEvent', '计算', '计算1', '-', r])
     //更新table
     dataSourceTable1.forEach(element => {
-      element.milestone = getPreviousWorkday(new Date(selectDate), element.cal)
-        .toISOString()
-        .slice(0, 10)
+      element.milestone = getFormatDate(
+        getPreviousWorkday(new Date(selectDate), element.cal),
+        'MM-DD'
+      )
       element.day = 'T-' + element.cal
     })
     dataSourceTable2.forEach(element => {
-      element.milestone = getPreviouDay(new Date(selectDate), element.cal)
-        .toISOString()
-        .slice(0, 10)
+      element.milestone = getFormatDate(
+        getPreviouDay(new Date(selectDate), element.cal),
+        'MM-DD'
+      )
       element.day = 'T-' + element.cal
     })
     let data3 = []
@@ -276,7 +283,7 @@ export default function HomePage() {
       let t = isWorkday(d)
       data3.push({
         key: i,
-        day: d.toISOString().slice(0, 10),
+        day: getFormatDate(d, 'MM-DD'),
         isWorkDay: t ? '工作日' : '假日',
         xday: t ? 'T-' + calN(selectDate, i) : '',
         yday: 'T-' + i
@@ -286,6 +293,10 @@ export default function HomePage() {
     // run()
     setResult(r)
   }, [selectDate, mark])
+
+  function getFormatDate(date: Date, formatString: string = 'YYYY-MM-DD') {
+    return dayjs(date).format(formatString)
+  }
 
   function getLastObjValue(obj: any) {
     // 获取对象的所有键名
@@ -308,7 +319,7 @@ export default function HomePage() {
   return (
     <div className={[`${styles.bg}`, `${styles.aliSpan}`].join(' ')}>
       <AutoCenter>
-        <h2>封板日计算小工具</h2>
+        <h2>T-N计算工具</h2>
       </AutoCenter>
       <p>快速型紧急类投产交付时间为T-4，T为自然日；</p>
       <p>版本日型投产交付时间为T-7，T为工作日；</p>
@@ -318,6 +329,7 @@ export default function HomePage() {
       </AutoCenter>
 
       <CalendarPicker
+        ref={ref1}
         visible={visible1}
         selectionMode="single"
         defaultValue={selectDate}
@@ -325,9 +337,10 @@ export default function HomePage() {
         max={dayjs('2024-12-31')}
         onClose={() => setVisible1(false)}
         onMaskClick={() => setVisible1(false)}
-        onConfirm={date =>
+        onConfirm={date => {
+          console.log('select:', date)
           date ? setSelectDate(date) : Toast.show('日期不合法')
-        }
+        }}
         renderTop={date => {
           let str: React.ReactNode | string = ''
           if (OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
@@ -371,7 +384,7 @@ export default function HomePage() {
           setVisible1(true)
         }}
       >
-        点击更改，投产日：{selectDate.toISOString().slice(0, 10)}
+        点击更改，投产日：{getFormatDate(selectDate)}
       </Button>
 
       <div style={{ padding: 16 }}>
