@@ -15,5 +15,9 @@ export default defineConfig({
     'process.env.HMR': process.env.HMR,
     'process.env.SOCKET_SERVER': process.env.ERROR_OVERLAY,
     PUSH_URL: 'https://nas6.issaclam.top:2087/RNdCNJV6TRExkKUEFE4ZvN/'
-  }
+  },
+  favicons: [
+    // 此时将指向 `/favicon.png` ，确保你的项目含有 `public/favicon.png`
+    '/favicon.png'
+  ]
 })

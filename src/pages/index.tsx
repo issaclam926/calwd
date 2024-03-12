@@ -18,6 +18,7 @@ import { Table } from 'antd'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import { useRequest } from 'ahooks'
+import imgUrl from '../../public/logo_transparent.png'
 import {
   marks,
   holidays,
@@ -319,10 +320,16 @@ export default function HomePage() {
   return (
     <div className={[`${styles.bg}`, `${styles.aliSpan}`].join(' ')}>
       <AutoCenter>
-        <h2>T-N计算工具</h2>
+        <div className={styles.title}>
+          <img src={imgUrl} width={150} height={150}></img>
+          {/* <h2 style={{ marginLeft: -50 }}>计算工具</h2> */}
+          {/* <div style={{ marginLeft: -20 }}>
+            <p>※ 快速型紧急类投产交付时间为T-4（自然日）；</p>
+            <p>※ 版本日型投产交付时间为T-7（工作日）；</p>
+          </div> */}
+        </div>
       </AutoCenter>
-      <p>快速型紧急类投产交付时间为T-4，T为自然日；</p>
-      <p>版本日型投产交付时间为T-7，T为工作日；</p>
+
       <AutoCenter>
         <Image src={yayJpg} width="100%" height="auto" lazy />
         {/* <img src={yayJpg}  /> */}
