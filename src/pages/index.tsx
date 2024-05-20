@@ -255,6 +255,33 @@ export default function HomePage() {
     }
   })
 
+  // 解决选中日期打开后不居中的问题
+  useEffect(() => {
+    // setSelectedDate(confirmDate);
+    const elementCalendar = document.querySelector(
+      '.adm-calendar-picker-view-body'
+    )
+    const element = document.querySelector(
+      '.adm-calendar-picker-view-cell-selected-begin'
+    )
+    // // 如果元素存在，获取其位置
+    // if (element) {
+    //   console.log(
+    //     element,
+    //     'element--',
+    //     element?.offsetTop,
+    //     elementCalendar?.offsetTop
+    //   )
+    //   console.dir(element)
+    //   console.dir(elementCalendar)
+    // }
+    setTimeout(() => {
+      if (elementCalendar?.scrollHeight) {
+        elementCalendar.scrollTop = element.offsetTop - 200
+      }
+    }, 100)
+  }, [visible1])
+
   useEffect(() => {
     console.log('useEffect---', selectDate)
     // if (selectDate) {
