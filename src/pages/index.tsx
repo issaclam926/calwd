@@ -151,7 +151,17 @@ export default function HomePage() {
       cal: 7
     },
     {
-      key: '21',
+      key: '22',
+      name: '签署用户测试报告',
+      cal: 5
+    },
+    {
+      key: '23',
+      name: '封板',
+      cal: 4
+    },
+    {
+      key: '24',
       name: '版本检验完成',
       cal: 3
     }
@@ -367,8 +377,8 @@ export default function HomePage() {
         visible={visible1}
         selectionMode="single"
         defaultValue={selectDate}
-        min={dayjs('2024-01-01')}
-        max={dayjs('2024-12-31')}
+        min={dayjs('2024-06-01')}
+        max={dayjs('2025-12-31')}
         onClose={() => setVisible1(false)}
         onMaskClick={() => setVisible1(false)}
         onConfirm={date => {
