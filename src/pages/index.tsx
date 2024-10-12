@@ -448,7 +448,7 @@ export default function HomePage() {
             pagination={false}
           />
         </Tabs.Tab>
-        <Tabs.Tab title="快速紧急" key="vegetables">
+        <Tabs.Tab title="快速紧急" key="vegetables" style={{ display: 'none' }}>
           <Table
             dataSource={dataSourceTable2}
             columns={columnsTable2}
