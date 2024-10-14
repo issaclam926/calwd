@@ -465,6 +465,11 @@ export default function HomePage() {
             dataSource={dataSourceTable3}
             columns={columnsTable3}
             pagination={false}
+            onRow={record => {
+              if (record?.day === dayjs().format('MM-DD')) {
+                return { style: { backgroundColor: '#4682B41A' } }
+              }
+            }}
           />
         </Tabs.Tab>
       </Tabs>
