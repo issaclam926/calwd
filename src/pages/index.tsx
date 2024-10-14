@@ -116,6 +116,11 @@ export default function HomePage() {
       cal: 9
     },
     {
+      key: '25',
+      name: '研发线上化考核点截止时间',
+      cal: 9
+    },
+    {
       key: '14',
       name: '非功能评估：第三批',
       cal: 10
