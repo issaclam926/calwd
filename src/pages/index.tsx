@@ -67,23 +67,18 @@ export default function HomePage() {
     },
     {
       key: '4',
-      name: '更新基线表',
+      name: '更新基线表 | 非功能评估：第一批',
       cal: 18
-    },
-    {
-      key: ' 5',
-      name: '非功能评估：第一批',
-      cal: 18
-    },
-    {
-      key: ' 6',
-      name: '非功能测试方案、案例提交截止时间',
-      cal: 16
     },
     {
       key: '7',
       name: '业务功能审核',
       cal: 17
+    },
+    {
+      key: ' 6',
+      name: '非功能测试方案、案例提交截止时间',
+      cal: 16
     },
     {
       key: '8',
@@ -102,37 +97,17 @@ export default function HomePage() {
     },
     {
       key: '11',
-      name: '测试案例导入ctcm',
+      name: '测试案例导入ctcm | 测试案例评审终止时间 | 单元测试完成',
       cal: 12
-    },
-    {
-      key: '12',
-      name: '单元测试完成',
-      cal: 12
-    },
-    {
-      key: '13',
-      name: '应用组装测试报告生成（SIT）',
-      cal: 9
-    },
-    {
-      key: '25',
-      name: '研发线上化考核点截止时间',
-      cal: 9
     },
     {
       key: '14',
-      name: '非功能评估：第三批',
+      name: '非功能评估：第三批 | 初版非功能测试报告提交截止时间',
       cal: 10
     },
     {
-      key: '15',
-      name: '初版非功能测试报告提交截止时间',
-      cal: 10
-    },
-    {
-      key: '16',
-      name: '用户测试案例执行完成（UAT）',
+      key: '13',
+      name: '应用组装测试报告生成（SIT）| 研发线上化考核点截止时间 | 用户测试案例执行完成（UAT）',
       cal: 9
     },
     {
@@ -141,18 +116,8 @@ export default function HomePage() {
       cal: 8
     },
     {
-      key: '18',
-      name: '非功能评估：第四批',
-      cal: 7
-    },
-    {
       key: '19',
-      name: '终版非功能测试报告通过',
-      cal: 7
-    },
-    {
-      key: '20',
-      name: '基线审核+安装测试审核通过',
+      name: '非功能评估：第四批 | 终版非功能测试报告通过 | 基线审核+安装测试审核通过',
       cal: 7
     },
     {
@@ -451,6 +416,12 @@ export default function HomePage() {
             dataSource={dataSourceTable1}
             columns={columnsTable1}
             pagination={false}
+            onRow={record => {
+              console.log('11111', record)
+              if (record?.milestone === dayjs().format('MM-DD')) {
+                return { style: { backgroundColor: '#4682B41A' } }
+              }
+            }}
           />
         </Tabs.Tab>
         <Tabs.Tab title="快速紧急" key="vegetables" style={{ display: 'none' }}>
