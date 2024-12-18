@@ -24,6 +24,7 @@ import {
   holidays,
   weekday,
   OnlineDay,
+  OnlineDay2,
   expDay,
   columnsTable1,
   columnsTable2,
@@ -355,11 +356,27 @@ export default function HomePage() {
           console.log('select:', date)
           date ? setSelectDate(date) : Toast.show('日期不合法')
         }}
+        renderDate={date => {
+          const dates = [16, 17, 18, 19]
+          const d = dayjs(date).date()
+          if (OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            return <div className={styles.onlineday1CellSelect}>{d}</div>
+          } else if (OnlineDay2.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            return <div className={styles.onlineday2CellSelect}>{d}</div>
+          } else if (holidays.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            return <div className={styles.heart}>{d}</div>
+          } else {
+            return <div>{d}</div>
+          }
+        }}
         renderTop={date => {
           let str: React.ReactNode | string = ''
           if (OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
             // str = '投产点'
-            str = <div className={styles.onlineDayColor}>投产点</div>
+            str = <div className={styles.onlineDayColor}>常规版本日</div>
+          } else if (OnlineDay2.includes(dayjs(date).format('YYYY-MM-DD'))) {
+            // str = '周版本日'
+            str = <div className={styles.onlineDayColor2}>周版本日</div>
           } else if (holidays.includes(dayjs(date).format('YYYY-MM-DD'))) {
             // str = '法定假'
             str = <div className={styles.holidayColor}>法定假</div>

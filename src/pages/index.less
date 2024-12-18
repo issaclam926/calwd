@@ -1,3 +1,4 @@
+
 .floatingBtn {
   position: fixed;
   bottom: 20px;
@@ -38,7 +39,11 @@
 }
 
 .onlineDayColor{
-  color: rgb(9, 133, 9);
+  color: rgb(14, 135, 180);
+}
+
+.onlineDayColor2{
+  color: rgb(41, 215, 137);
 }
 
 .title{
@@ -47,3 +52,54 @@
   align-items:center;
   justify-content: flex-start;
 }
+
+.onlineday1CellSelect {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #11a7e780;
+  color: #fff;
+  }
+
+  .onlineday2CellSelect {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #11e75880;
+    color: #fff;
+    }
+
+    .heart {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      background-color: rgba(255, 215, 0, 0.5); /* 半透明金色 */
+      // transform: rotate(-45deg);
+      margin: 7px;
+  }
+  
+  .heart:before,
+  .heart:after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background-color: rgba(255, 215, 0, 0.5); /* 半透明金色 */
+      border-radius: 50%; /* 圆形 */
+  }
+  
+  .heart:before {
+      top: -7px; /* 上半部分*/
+      left: 0;
+  }
+  
+  .heart:after {
+      left: 7px; /* 右半部分 */
+      top: 0;
+  }
