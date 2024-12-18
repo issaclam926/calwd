@@ -373,10 +373,10 @@ export default function HomePage() {
           let str: React.ReactNode | string = ''
           if (OnlineDay.includes(dayjs(date).format('YYYY-MM-DD'))) {
             // str = '投产点'
-            str = <div className={styles.onlineDayColor}>常规版本日</div>
+            str = <div className={styles.onlineDayColor}>常规版本</div>
           } else if (OnlineDay2.includes(dayjs(date).format('YYYY-MM-DD'))) {
             // str = '周版本日'
-            str = <div className={styles.onlineDayColor2}>周版本日</div>
+            str = <div className={styles.onlineDayColor2}>周版本</div>
           } else if (holidays.includes(dayjs(date).format('YYYY-MM-DD'))) {
             // str = '法定假'
             str = <div className={styles.holidayColor}>法定假</div>
