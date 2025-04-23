@@ -287,7 +287,7 @@ export default function HomePage() {
       element.day = 'T-' + element.cal
     })
     let data3 = []
-    for (let i = 0; i <= 50; i++) {
+    for (let i = 0; i <= 100; i++) {
       let d = getPreviouDay(new Date(selectDate), i)
       let t = isWorkday(d)
       data3.push({
