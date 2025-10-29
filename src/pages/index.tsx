@@ -349,7 +349,7 @@ export default function HomePage() {
         selectionMode="single"
         defaultValue={selectDate}
         min={dayjs('2024-06-01')}
-        max={dayjs('2025-12-31')}
+        max={dayjs('2026-06-31')}
         onClose={() => setVisible1(false)}
         onMaskClick={() => setVisible1(false)}
         onConfirm={date => {
