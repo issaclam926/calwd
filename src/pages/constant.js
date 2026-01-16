@@ -297,3 +297,17 @@ export const columnsTable3 = [
     width: 80
   }
 ]
+
+// 根据0-6，返回对应的中文星期几
+export const dayByNum = (num) => {
+  const map = {
+    0: '（星期日）',
+    1: '（星期一）',
+    2: '（星期二）',
+    3: '（星期三）',
+    4: '（星期四）',
+    5: '（星期五）',
+    6: '（星期六）'
+  }
+  return map[num] || ''
+}

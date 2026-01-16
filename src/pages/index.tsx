@@ -28,7 +28,8 @@ import {
   expDay,
   columnsTable1,
   columnsTable2,
-  columnsTable3
+  columnsTable3,
+  dayByNum
 } from './constant'
 // import styled from 'styled-components'
 
@@ -293,7 +294,7 @@ export default function HomePage() {
       data3.push({
         key: i,
         day: getFormatDate(d, 'MM-DD'),
-        isWorkDay: t ? '工作日' : '假日',
+        isWorkDay:( t ? '工作日' : '休息日') + ' '+ dayByNum(dayjs(d).day()),
         xday: t ? 'T-' + calN(selectDate, i) : '',
         yday: 'T-' + i
       })
